@@ -1,5 +1,5 @@
 import flet as ft
-from pytube import YouTube
+from pytube import YouTube as YT
 import os
 
 def main(page):
@@ -9,14 +9,14 @@ def main(page):
 
     def download_video(e):
         current_folder = os.getcwd()
-        yt = YouTube(url.value)
+        yt = YT(url.value)
         video_stream = yt.streams.get_highest_resolution()
         video_stream.download(output_path=current_folder)
         print("Descarga de video completada.")
 
     def download_audio(e):
         current_folder = "E:/"
-        yt = YouTube(url.value)
+        yt = YT(url.value)
         audio_stream = yt.streams.filter(only_audio=True, file_extension='mp4').first()
 
         if audio_stream:
